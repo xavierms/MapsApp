@@ -1,24 +1,24 @@
 <div #map class="maps-container"></div>
 <div class="row">
   <div class="col-12">
-    <label class="form-label"> Zoom: {{zoomLevel | number:'2.0-2'}} - Lng,Lat - [123,-456] </label>
+    <label class="form-label">
+      Zoom: {{ zoomLevel | number: "2.0-2" }} - Lng,Lat - [{{
+        center[0] | number: "2.4-4"
+      }}, {{ center[1] | number: "2.4-4" }}]
+    </label>
   </div>
-  <input type="range" 
-         [value]="zoomLevel" 
-         class="form-range" 
-         min="0"
-         max="18"
-         (input)="zoomChange(zoomInput.value)"
-         #zoomInput/>
+  <input
+    type="range"
+    [value]="zoomLevel"
+    class="form-range"
+    min="0"
+    max="18"
+    (input)="zoomChange(zoomInput.value)"
+    #zoomInput
+  />
 
   <div class="col-12">
-    <button class="btn btn-primary"
-            (click)="zoomOut()">
-        -
-    </button>
-    <button class="btn btn-primary float-end"
-            (click)="zoomIn()">
-    +
-    </button>
+    <button class="btn btn-primary" (click)="zoomOut()">-</button>
+    <button class="btn btn-primary float-end" (click)="zoomIn()">+</button>
   </div>
 </div>

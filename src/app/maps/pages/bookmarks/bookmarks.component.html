@@ -1,1 +1,12 @@
-<p>bookmarks works!</p>
+<ul class="list-group">
+    <li class="list-group-item list-group-item-info"
+       (click)="addMarker()">
+   + Add
+    </li>
+    <li class="list-group-item"
+        (click)="goingToMarker()">
+     marker 1
+    </li>
+</ul>
+
+<div #map class="maps-container"></div>
