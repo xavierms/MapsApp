@@ -1,11 +1,12 @@
 <ul class="list-group">
     <li class="list-group-item list-group-item-info"
        (click)="addMarker()">
-   + Add
+   <i class="fas fa-plus"></i> Add
     </li>
     <li *ngFor="let bookMark of bookmarks; let i= index;"
         class="list-group-item"
-        (click)="goingToMarker(bookMark.marker)"
+        (click)="goingToMarker(bookMark.marker!)"
+        (dblclick)="deleteMarker(i)"
         [ngStyle]="{
             'background-color': bookMark.color
         }"
