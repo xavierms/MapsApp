@@ -3,9 +3,14 @@
        (click)="addMarker()">
    + Add
     </li>
-    <li class="list-group-item"
-        (click)="goingToMarker()">
-     marker 1
+    <li *ngFor="let bookMark of bookmarks; let i= index;"
+        class="list-group-item"
+        (click)="goingToMarker(bookMark.marker)"
+        [ngStyle]="{
+            'background-color': bookMark.color
+        }"
+        >
+     Marker {{i +1}} 
     </li>
 </ul>
 

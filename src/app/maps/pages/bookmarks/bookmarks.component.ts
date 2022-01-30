@@ -1,6 +1,11 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 
+
+interface MarkerColor{
+  color : string;
+  marker: mapboxgl.Marker;
+}
 @Component({
   selector: 'app-bookmarks',
   templateUrl: './bookmarks.component.html',
@@ -27,6 +32,8 @@ export class BookmarksComponent implements AfterViewInit {
   maps!: mapboxgl.Map;
   zoomLevel: number = 15;
   center: [number, number] = [-69.93758121994654, 18.473808890777686];
+
+  bookmarks: MarkerColor[]=[];
   constructor() {}
 
   ngAfterViewInit(): void {
@@ -46,13 +53,36 @@ export class BookmarksComponent implements AfterViewInit {
   }
 
   addMarker() {
+
+    const color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+    console.log(color);
+    
     const newMarker = new mapboxgl.Marker({
-      draggable: true
+      draggable: true,
+      //color: color  in ECMA Script 6 esto es redundante.
+      color
     })
     .setLngLat(this.center)
     .addTo(this.maps);
+    this.bookmarks.push({
+      color,
+      marker: newMarker
+    });
+    console.log( this.bookmarks);
+    
   }
-  goingToMarker() {
-  
+  goingToMarker(marker: mapboxgl.Marker) {
+  this.maps.flyTo({
+    center: marker.getLngLat()
+  })
+  }
+
+
+  saveBookMarksLocalStorage(){
+
+  }
+
+  readLocalStorage(){
+    
   }
 }
